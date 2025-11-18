@@ -1,0 +1,219 @@
+@use "./_config" as cfg;
+
+@mixin center-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+%flex-col {
+  display: flex;
+  flex-direction: column;
+}
+
+%btn {
+    background-color: cfg.$secondary-color;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: 600;
+    border:none;
+    padding: 10px;
+    cursor: pointer;
+}
+
+%small-text {
+  font-size: .8rem;
+  color: #2e2e2e;
+}
+
+
+%title-text {
+  font-family: cfg.$font1;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+    @include center-content;
+    flex-direction: column;
+    background-color: cfg.$primary-color;
+}
+
+form, .nav-title {
+    h1 {
+        font-family: cfg.$font1;
+        padding:0;
+        margin:0;
+        font-size: 3.7rem;
+        color: #080808;
+    }
+}
+
+.nav-title{
+    @include center-content;
+    width: 100%;
+    gap: 20px;
+
+    h1 {margin: 20px;}
+
+    a > button{
+        @include center-content;
+        border-radius: 50px;
+        border: 2px dashed cfg.$tertiary-color;
+        background-color: cfg.$quartiary-color;
+        padding: 5px;
+        width: 50px;
+        height: 50px;
+        cursor: pointer;
+
+        img { width: 30px; }
+    }
+}
+
+main {
+    @include center-content;
+    max-width: 1040px;
+    width: 90%;
+    min-height: 500px;
+    gap: 10px;
+    background: cfg.$tertiary-color;
+    border-radius: 20px;
+    padding: 10px;
+    border: 8px solid cfg.$secondary-color;
+    flex-wrap: wrap
+}
+
+// Post-its ==================
+
+.post-it{
+    @extend %flex-col;
+    width: 200px;
+    height: 200px;
+    padding: 20px;
+    border-radius: 10px;
+    font-family: cfg.$font2;
+    overflow: hidden;
+    justify-content: space-between;
+    position: relative;
+
+    h2 {
+        @extend %title-text;
+        font-size: 2rem;
+        font-weight: 400;
+    }
+
+    .user-name, .date-text { 
+        @extend %small-text; 
+    }
+    .text-post-it {
+        font-size: 1.5rem;
+        font-family: cfg.$font1;
+    }
+    hr{
+        border: 1px solid #0000006c;
+    }
+
+    &::after {
+        content: "";
+        position:absolute;
+        width:15px;
+        height: 15px;
+        background-color: rgb(151, 17, 17);
+        top:10px;
+        left:45%;
+        border-radius: 50px;
+        box-shadow: 
+            5px 5px 10px -2px #080808,
+            inset 1px 1px 1px 1px rgb(190, 56, 56);
+    }
+
+}
+
+@for $i from 1 through length(cfg.$post-it-colors) {
+    .post-it.color-#{$i - 1} {
+        background-color: nth(cfg.$post-it-colors, $i);
+        transform: rotate(nth(cfg.$post-it-rotations, $i));
+
+        &::before {
+            content: "";
+            position:absolute;
+            width:30px;
+            height: 30px;
+            bottom:0;
+            right:0;
+            background-color: nth(cfg.$post-it-colors, $i);
+            border-top-left-radius: 8px;
+            box-shadow:rgba(100, 100, 111, 0.671) 0px 7px 29px 0px;
+        }
+    }
+}
+
+
+// Form Page ==============
+
+form {
+    @extend %flex-col;
+    background: cfg.$quartiary-color;
+    border-radius: 10px;
+    padding: 20px;
+    max-width: 500px;
+    width: 90%;
+    gap: 10px;
+
+    input, textarea {
+        padding: 5px;
+        border-radius: 5px;
+        border: 1px solid #2e2e2e63;
+        font-family: cfg.$font1;
+        font-size: 1.7rem;
+    }
+
+    textarea { min-height: 200px; }
+
+    label { @extend %small-text; font-weight: 600; }
+
+    a {
+        text-decoration: underline;
+        @extend %small-text;
+        text-align: center;
+    }
+
+    button { @extend %btn; }
+}
+
+// Pop-up ==================
+#postItModal {
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    max-width: 500px;
+    height: auto;
+    width: 90%;
+
+    &::backdrop {
+        background: rgba(0,0,0,0.6);
+    }
+
+    .modal-content {
+        @extend %flex-col;
+        justify-content: space-between;
+        padding: 20px;
+        height:100%;
+
+        span p { @extend %small-text; }
+
+        h2, #modalText {
+            font-family: cfg.$font1;
+            font-size: 1.5rem !important;
+            font-weight: 400;
+        }
+
+        span:first-child h2 {
+            font-size: 2rem !important;
+        }
+    }
+
+    #closeModal {
+        @extend %btn;
+    }
+}

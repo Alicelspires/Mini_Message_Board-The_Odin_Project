@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../css/style.css" />
+    <title>Homepage</title>
+  </head>
+  <body>
+    <span class="nav-title">
+        <h1>Mini Message Board</h1>
+        <a href="/new" class="new-message">
+            <button><img src="../img/plus-icon.png" alt="icon plus - adicionar novo post-it"></button>
+        </a>
+    </span>
+    <main>
+      <% messages.forEach((message, index) => { %>
+        <div class="post-it color-<%= index % postitColorCount %>"
+            data-title="<%= message.title %>"
+            data-user="<%= message.user %>"
+            data-text="<%= message.text %>"
+            data-date="<%= message.createdDate.toLocaleString() %>"
+        >
+            <span>
+                <h2><%= message.title %></h2>
+                <p class="user-name">by <%= message.user %></p>
+                <hr />
+            </span>
+            <p class="text-post-it"><%= message.text %></p>
+            <p class="date-text"><%= message.createdDate.toLocaleString() %></p>
+        </div>
+      <% }) %>
+    </main>
+
+    <dialog id="postItModal">
+        <div class="modal-content">
+            <span>
+                <h2 id="modalTitle"></h2>
+                <p id="modalUser"></p>
+                <hr />
+                <p id="modalText"></p>
+                <p id="modalDate"></p>
+            </span>
+            <button id="closeModal">Fechar</button>
+        </div>
+    </dialog>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const modal = document.getElementById("postItModal");
+            const closeBtn = document.getElementById("closeModal");
+
+            const modalTitle = document.getElementById("modalTitle");
+            const modalUser = document.getElementById("modalUser");
+            const modalText = document.getElementById("modalText");
+            const modalDate = document.getElementById("modalDate");
+
+            document.querySelectorAll(".post-it").forEach(post => {
+                post.addEventListener("click", () => {
+                modalTitle.textContent = post.dataset.title;
+                modalUser.textContent = "by " + post.dataset.user;
+                modalText.textContent = post.dataset.text;
+                modalDate.textContent = post.dataset.date;
+
+                modal.showModal();
+                });
+            });
+
+            closeBtn.addEventListener("click", () => modal.close());
+        });
+    </script>
+  </body>
+</html>
