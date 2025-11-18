@@ -5,6 +5,16 @@
 
 Mini Message Board is a simple and interactive application built with Node.js, Express, and EJS, where users can view and create small post-it-style messages. The project follows the proposal of The Odin Project course, but has been expanded with a focus on design, code organization, and best practices.
 
+## Features
+
+- Display messages as post-it notes with dynamic colors and random rotations
+- Click any post-it to view its details inside a modal pop-up
+- Includes a form page for creating new messages
+- Advanced SASS workflow with variables, loops, and modular structure
+- Responsive layout resembling a real message board
+- Organized back-end with MVC-style routing and controllers
+- Simple in-memory data storage
+
 ## Stacks
 
 - Node.js + Express
