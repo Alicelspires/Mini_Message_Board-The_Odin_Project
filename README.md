@@ -26,3 +26,11 @@ Mini Message Board is a simple and interactive application built with Node.js, E
 ## Preview
 
 <img width="1142" height="695" alt="image" src="https://github.com/user-attachments/assets/c22863be-0e29-40d2-9236-02c8bfe7fe33" />
+
+
+<div align="center">
+  
+![visitor badge](https://visitor-badge.laobi.icu/badge?page_id=Alicelspires.Mini_Message_Board-The_Odin_Project&left_color=grey&right_color=black&left_text=Visitors)
+
+</div> 
+
