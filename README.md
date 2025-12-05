@@ -5,7 +5,7 @@
 
 Mini Message Board is a simple and interactive application built with Node.js, Express, and EJS, where users can view and create small post-it-style messages. The project follows the proposal of The Odin Project course, but has been expanded with a focus on design, code organization, and best practices.
 
-`Site`: 
+`Vercel`: [https://mini-message-board-the-odin-project-five.vercel.app/](https://mini-message-board-the-odin-project-five.vercel.app/)
 
 ![The Odin Project](https://img.shields.io/badge/The%20Odin%20Project-e3b261?style=for-the-badge&logo=theodinproject&logoColor=000000&link=https%3A%2F%2Fwww.theodinproject.com%2Fpaths%2Ffull-stack-javascript%2Fcourses%2Fnodejs)
 
